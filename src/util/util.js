@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 let util = {}
-const ajaxUrl = 'http://47.92.124.106:8090'
+const ajaxUrl = 'http://47.95.11.234:8080'
 util.ajax = axios.create({
   baseURL: ajaxUrl,
   timeout: 60000
