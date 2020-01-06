@@ -16,6 +16,9 @@
         <FormItem >
           <Button type="warning" long style="height: 40px" class="login-Button" @click="on_login" :loading="buttomLogding">登录</Button>
         </FormItem>
+        <FormItem >
+          <Button type="warning" long style="height: 40px" class="login-Button" @click="menuRequest" :loading="buttomLogding">菜单</Button>
+        </FormItem>
       </Form>
     </div>
   </div>
@@ -59,13 +62,26 @@ export default {
       this.$ajax.post('/user/login', this.formItem).then(res => {
         console.log(res)
         if (res.data.code === 200) {
-          this.$cookies.set('token', res.data.data)
+          console.log(res.data.data)
+          let {user, token} = res.data.data
+          this.$cookies.set('user', user)
+          this.$cookies.set('token', token)
+          this.menuRequest()
         }
         this.buttomLogding = false
       }).catch((e) => {
         this.buttomLogding = false
         console.log(e, '/user/login')
         this.$Notice.warning({title: '警告', desc: '接口错误,请与系统管理员联系,/user/login'})
+      })
+    },
+    // GET /user/menu
+    menuRequest () {
+      this.$ajax.get('/user/menu').then(res => {
+        console.log(res)
+      }).catch((e) => {
+        console.log(e, '/user/menu')
+        this.$Notice.warning({title: '警告', desc: '接口错误,请与系统管理员联系,/user/menu'})
       })
     }
   }
@@ -89,17 +105,11 @@ export default {
     width: 300px;
     margin-right: 20%;
   }
-  .login-register-p{
-    color:  #888888;
-  }
   .login-register-p>span{
     color:  #333333;
   }
   .login-register-p:hover>span{
     color: red;
-  }
-  .login--p-hover:hover{
-    cursor: pointer;
   }
   .login-Button{
     letter-spacing: 5px;

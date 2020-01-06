@@ -21,6 +21,12 @@ export const index = {
       path: '/home',
       name: 'home',
       component: () => import('@/view/home/home.vue')
+    },
+    {
+      title: '菜单管理',
+      path: '/menuManage',
+      name: 'menuManage',
+      component: () => import('@/view/menuManage/menuManage.vue')
     }
   ]
 }

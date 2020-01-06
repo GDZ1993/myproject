@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
+
 let util = {}
 const ajaxUrl = 'http://47.95.11.234:8080'
 util.ajax = axios.create({
@@ -8,11 +9,9 @@ util.ajax = axios.create({
 })
 // http请求拦截器
 util.ajax.interceptors.request.use(config => {
-  // console.log(config.url)
-  // console.log('token', Cookies.get('token'))
-  // if (config.url.indexOf('/fitness/webLogin') === -1 && config.url.indexOf('/fitness/captcha.jpg') === -1) {
-  //   config.headers['token'] = Cookies.get('token')
-  // }
+  if (config.url.indexOf('/user/login') === -1) {
+    config.headers['token'] = Cookies.get('token')
+  }
   return config
 })
 // http响应拦截器

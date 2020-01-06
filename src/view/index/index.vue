@@ -1,17 +1,12 @@
 <template>
   <div class="layout">
-    <Sider ref="side1" :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
+    <Sider ref="side1" class="index-Sider" :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
       <div class="index-MenuName">仓储管理系统</div>
-      <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-        <Submenu name="1">
-          <template slot="title">
-            <Icon type="ios-navigate"></Icon>
-            Item 1
-          </template>
-          <MenuItem name="1-1">Option 1</MenuItem>
-          <MenuItem name="1-2">Option 2</MenuItem>
-          <MenuItem name="1-3">Option 3</MenuItem>
-        </Submenu>
+      <Menu active-name="1" theme="light" width="auto" :open-names="['1']" >
+        <MenuItem name="1" to="/menuManage">
+          <Icon type="ios-keypad"></Icon>
+          菜单管理
+        </MenuItem>
         <Submenu name="2">
           <template slot="title">
             <Icon type="ios-keypad"></Icon>
@@ -38,7 +33,7 @@
             <div class="user-name hover-div">
               <span>工号: 004500</span>
             </div>
-            <Icon type="md-power hover-div" size="20"/>
+            <Icon type="md-power hover-div" size="20" color="#ffff"/>
           </div>
         </div>
       </Header>
@@ -49,7 +44,7 @@
           <BreadcrumbItem>Layout</BreadcrumbItem>
         </Breadcrumb>
         <Card>
-          <div style="height: 1500px">Content</div>
+          <router-view/>
         </Card>
       </Content>
     </Layout>
@@ -79,16 +74,31 @@ export default {
   }
 }
 </script>
-
+<style>
+  body{
+    background: #f5f7f9;
+  }
+</style>
 <style scoped>
+  .ivu-menu-vertical.ivu-menu-light:after{
+    width: 0px;
+  }
+  .index-Sider{
+    background: white;
+  }
   .index-MenuName{
-    width: 100%;
-    color: white;
-    padding: 15px 0;
+    width: 95%;
+    margin: auto;
+    color: #7298FF;
+    height: 63px;
+    line-height: 63px;
+    font-size: 16px;
     text-align: center;
+    border-bottom: 1px solid #7298FF;
+    margin-bottom: 15px;
   }
   .Header-div {
-    background: white;
+    background: #7298FF;
     boxShadow: 0 2px 3px 2px rgba(0,0,0,.1);
     padding: 0;
   }
@@ -99,5 +109,6 @@ export default {
   }
   .user-name{
     margin-right: 20px;
+    color: white;
   }
 </style>
